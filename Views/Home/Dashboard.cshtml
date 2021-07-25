@@ -1,0 +1,74 @@
+﻿@model IEnumerable<sample_mvc5.Models.Studentclass>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dasboard</h1>
+        <div>
+
+            <table>
+                <tr class="headr">
+                    <td>First name</td>
+                    <td>second name</td>
+                    <td>Date of birth</td>
+                    <td>Age</td>
+                    <td>Favorite subject</td>
+                    <td>Interested Course</td>
+                    <td>Maths mark</td>
+                    <td>Chemistry mark</td>
+                    <td>Computer mark</td>
+                    <td>Username</td>
+                    <td>Password</td>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+
+                <td>@Html.DisplayFor(modelitem => item.firstname)</td>
+                <td>@Html.DisplayFor(modelitem => item.secondname)</td>
+                <td>@Html.DisplayFor(modelitem => item.Studentsdob)</td>
+                <td>@Html.DisplayFor(modelitem => item.Age)</td>
+                <td>@Html.DisplayFor(modelitem => item.Favoritesubject)</td>
+                <td>@Html.DisplayFor(modelitem => item.InterestedCourse)</td>
+                <td>@Html.DisplayFor(modelitem => item.Mathsmark)</td>
+                <td>@Html.DisplayFor(modelitem => item.ChemistryMark)</td>
+                <td>@Html.DisplayFor(modelitem => item.CompMark)</td>
+                <td>@Html.DisplayFor(modelitem => item.Username)</td>
+                <td>@Html.DisplayFor(modelitem => item.Password)</td>
+                <td>@Html.HiddenFor(modelitem => item.StudentId)</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Home", new { studentid = item.StudentId }, new { @class = "butt", onclick = "return confirm('Are you want to Delete');" })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { studentid = item.StudentId }, new { @class = "butt" })</td>
+
+            </tr>
+            
+                        }
+                    
+                </table>
+        </div>
+</body>
+</html>
+<style>
+    .headr {
+    text-align:center;
+    }
+    .butt {
+        text-decoration: none;
+        color: white;
+        padding: 8px;
+        background-color: grey;
+    }
+    body {
+        background-image: url('../../Content/Image/book.jpg');
+        color:white;
+        margin-left:5rem;
+    }
+    </style>

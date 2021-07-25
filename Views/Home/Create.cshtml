@@ -1,0 +1,198 @@
+﻿
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+@model sample_mvc5.Models.Studentclass
+
+
+
+@{
+    var aler = ViewBag.alert;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <h1>Details missing or update your Details</h1>
+        <h2>Add your details here</h2>
+
+        @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { id = "firstforme" }))
+        {
+            @Html.HiddenFor(model=>model.StudentId)
+            @Html.Label("First Name")@Html.TextBoxFor(model => model.firstname, new { @class = "textbox", placeholder = "First name" })<br><br>
+            @Html.Label("second Name")@Html.TextBoxFor(model => model.secondname, new { @class = "textbox",placeholder = "Second name" })<br><br>
+            @Html.Label("Student DOB")@Html.TextBoxFor(model => model.Studentsdob, new { @class = "textbox", type = "date",id= "dob", onchange = "getAge()"})<br><br>
+            @Html.Label("Age")@Html.TextBoxFor(model => model.Age, new { @class = "textbox", })<br><br>
+            @Html.Label("Favorite Subject")@Html.DropDownList("Favoritesubject", new List<SelectListItem>
+{ new SelectListItem{ Text="Tamil",Value="Tamil"},
+new SelectListItem{ Text="Physics",Value="Physics"},
+new SelectListItem{ Text="Maths",Value="Maths"},
+new SelectListItem{ Text="English",Value="English"},
+new SelectListItem{ Text="chemistry",Value="chemistry"}}, "Favorite subject")<br><br>
+            @Html.Label("Interested Course")@Html.DropDownList("InterestedCourse", new List<SelectListItem>
+{ new SelectListItem{ Text="IT",Value="IT"},
+new SelectListItem{ Text="CSE",Value="CSE"},
+new SelectListItem{ Text="ECE",Value="IT"},
+new SelectListItem{ Text="EEE",Value="EEE"},
+new SelectListItem{ Text="MECH",Value="MECH"}}, "Interested courses")<br><br>
+            @Html.Label("Maths mark")@Html.TextBoxFor(model => model.Mathsmark, new { @class = "textbox", placeholder = "Mathsmark" })<br><br>
+            @Html.Label("Chemistry mark")@Html.TextBoxFor(model => model.ChemistryMark, new { @class = "textbox", placeholder = "ChemistryMark" })<br><br>
+            @Html.Label("Computer mark")@Html.TextBoxFor(model => model.CompMark, new { @class = "textbox", placeholder = "CompMark" })<br><br>
+            @Html.Label("user name")@Html.TextBoxFor(model => model.Username, new { @class = "textbox", placeholder = "username" })<br><br>
+            @Html.Label("password")@Html.PasswordFor(model => model.Password, new { @class = "textbox", placeholder = "password" })<br><br>
+            <button type="button" onclick="SubmitDetails()">Submit</button>
+            <button type="reset">Reset</button>
+
+
+        }
+    </div>
+</body>
+</html>
+<style>
+    div {
+        color: white;
+        margin-left: 5rem;
+    }
+
+    button {
+        padding: 8px;
+        background-color: white;
+    }
+    body {
+        background-image: url('../../Content/Image/book.jpg');
+        color: white;
+        margin-left: 5rem;
+    }
+</style>
+
+
+
+
+<script>
+    $(function () {
+        $("#firstforme").validate({
+            rules: {
+                firstname:
+                {
+                    required: true
+
+                },
+                secondname:
+                {
+                    required: true,
+
+                },
+                Studentsdob:
+                {
+                    required: true
+                },
+                Age:
+                {
+                    required: true
+                },
+                Favoritesubject:
+                {
+                    required: true
+                },
+                InterestedCourse:
+                {
+                    required: true
+                },
+                Mathsmark:
+                {
+                    required: true,
+                    maxlength: 3
+                },
+                ChemistryMark:
+                {
+                    required: true,
+                    maxlength: 3
+                },
+                CompMark:
+                {
+                    required: true,
+                    maxlength: 3
+                }
+            },
+            messages:
+            {
+                firstname:
+                {
+                    required: "Name is required",
+
+                },
+                secondname:
+                {
+                    required: "last is required",
+                    
+                },
+                Studentsdob:
+                {
+                    required: "Dob is required"
+                },
+                Age:
+                {
+                    required: "student age is required"
+                },
+                Favoritesubject:
+                {
+                    required: "favourite subject is required"
+                },
+                InterestedCourse:
+                {
+                    required: "Interested course is required"
+                },
+                Mathsmark:
+                {
+                    required: "Maths mark is required",
+                    maxlength: "Maximum length is 3"
+                },
+                ChemistryMark:
+                {
+                    required: "Chemistry mark is required",
+                    maxlength: "Maximum length is 3"
+                },
+                CompMark:
+                {
+                    required: "Computer mark is required",
+                    maxlength: "Maximum length is 3"
+                }
+            }
+        });
+    });
+    function SubmitDetails() {
+
+        if ($("#firstforme").validate()) {
+            $("#firstforme").submit();
+        }
+    }
+    function getAge() {
+        var dateString = $("#dob").val();
+        //alert(dateString)
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        $('#Age').val(age);
+        if ($('#Age').val() != "") {
+            $('#Age').prop("disabled", true);
+        }
+        else {
+            $('#Age').prop("disabled", false);;
+        }
+    }
+</script>

@@ -1,0 +1,54 @@
+﻿@model sample_mvc5.Models.Studentclass
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <div> 
+        <h1>Delete Action</h1>
+        @using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+        {
+    <table>
+        <tr>
+            <td>First name</td>
+            <td>second name</td>
+            <td>Date of birth</td>
+            <td>Age</td>
+            <td>Favorite subject</td>
+            <td>Interested Course</td>
+            <td>Maths mark</td>
+            <td>Chemistry mark</td>
+            <td>Computer mark</td>
+            <td>Username</td>
+            <td>Password</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(item => item.firstname)</td>
+            <td>@Html.DisplayFor(item => item.secondname)</td>
+            <td>@Html.DisplayFor(item => item.Studentsdob)</td>
+            <td>@Html.DisplayFor(item => item.Age)</td>
+            <td>@Html.DisplayFor(item => item.Favoritesubject)</td>
+            <td>@Html.DisplayFor(item => item.InterestedCourse)</td>
+            <td>@Html.DisplayFor(item => item.Mathsmark)</td>
+            <td>@Html.DisplayFor(item => item.ChemistryMark)</td>
+            <td>@Html.DisplayFor(item => item.CompMark)</td>
+            <td>@Html.DisplayFor(item => item.Username)</td>
+            <td>@Html.DisplayFor(item => item.Password)</td>
+            <td>@Html.HiddenFor(item => item.StudentId)</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Home")</td>
+        </tr>
+
+        
+
+    </table>
+        }
+    </div>
+</body>
+</html>

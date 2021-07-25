@@ -1,0 +1,59 @@
+﻿@model sample_mvc5.Models.Studentclass
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+
+<html>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "dive" }))
+        {
+            <h1>Login to Enter</h1>
+            @Html.TextBoxFor(model => model.Username, new { @class = "place", placeholder = "   Enter username" })<br><br>
+            @Html.PasswordFor(model => model.Password, new { @class = "place", placeholder = "   Passcode" })<br><br>
+            <button type="submit">Login</button>
+            <button type="submit" onclick="Home/Create/">signup</button>
+            @* @Html.ActionLink("signup","Create","Home",new { @class="butt"})*@
+
+        }
+    </div>
+</body>
+</html>
+<style>
+    .place {
+    width:15rem;
+    height:2rem;
+    border-radius:6px;
+    border-style:none;
+    
+    }
+    #dive {
+    padding-left:4rem;
+    }
+    button {
+        font-size:15px;
+        width: 4rem;
+        border-style: none;
+        padding: 8px;
+        background-color: white;
+        border-radius: 6px;
+    }
+    div {
+        border-radius:12px;
+        background-color: #529dba;
+        margin: 10rem 16rem 8rem 16rem;
+        padding: 2rem;
+    }
+
+    body {
+        background-color: #f2eee4;
+    }
+    h1 ,button {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-style: normal;
+    }
+</style>
+
+
